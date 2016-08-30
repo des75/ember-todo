@@ -1,0 +1,29 @@
+<div class="side-panel" >
+  <h2>Settings</h2>
+
+  <h3>Filters</h3>
+  <form>
+    plachelolder for controls
+  </form>
+
+</div>
+
+<div class="main-panel">
+  <h2>All ToDo lists</h2>
+
+  <div class="all-todo-lists">
+    {{#each model as |list|}}
+      {{#link-to "todo-lists.todo-list" list class=(concat "todo-list-preview style-" list.style)}}
+        <span class="title">{{list.title}}</span>
+        <span class="info">
+          Entries: {{list.entries.length}}<br>
+          Priority: {{list.priority}}
+        </span>
+      {{/link-to}}
+    {{/each}}
+    <button class="create-todo-list" {{action "createList"}}>+</button>
+  </div>
+  
+  {{outlet}}
+  
+</div>

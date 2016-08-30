@@ -1,0 +1,207 @@
+@import "normalize";
+@import "forms";
+@import "../../../node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
+
+
+body{
+  background: url(images/patterns/4.png);
+}
+
+$side-panel-width: 200px;
+
+h2{
+  margin: 1em 0;
+  text-align: center;
+}
+h3{
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+.side-panel{
+  @include position(absolute, 0 null 0 0);
+  width: $side-panel-width;
+}
+
+.main-panel{
+  @include position(absolute, 0 0 0 $side-panel-width);
+  overflow: auto;
+}
+
+
+//--
+
+.bg-chooser{
+  text-align: center;
+  .style{
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 3px;
+    margin: 5px;
+    background: white;
+
+    &.active,
+    &:hover{
+      cursor: pointer;
+      border: 1px solid #aaa;
+      box-shadow: 0 0 5px 0px rgba(0,0,0, 0.2);
+    }
+
+    &:before{
+      content: "";
+      display: block;
+      height: 30px;
+      width: 30px;
+    }
+
+    @for $i from 1 through 9 {
+      &.style-#{$i}{
+        &:before{
+          background: url(images/patterns/#{$i}.png);
+        }
+      }
+    }
+  }
+}
+
+//--
+
+$list-preview-size: 180px;
+.all-todo-lists{
+  .todo-list-preview{
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: $list-preview-size*0.1;
+
+    height: $list-preview-size;
+    width: $list-preview-size;
+
+    color: #444;
+    text-decoration: none;
+
+    @for $i from 1 through 9 {
+      &.style-#{$i}{
+        background: url(images/patterns/#{$i}.png);
+      }
+    }
+
+    .title{
+      display: block;
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+  }
+
+  .create-todo-list{
+    background: rgba(240,220,220, 0.2);
+
+    color: #977;
+    border-radius: 2px;
+    border: 1px solid #dcc;
+    font-size: 36px;
+    height: 70px;
+    width: 70px;
+    margin: ($list-preview-size - 70px)/2 + ($list-preview-size * 0.1);
+    vertical-align: top;
+
+    &:hover{
+      @include transition(all 0.3s ease);
+      background: rgba(240,220,220, 1);
+    }
+  }
+}
+
+//--
+
+.todo-list{
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+
+  @for $i from 1 through 9 {
+    &.style-#{$i}{
+      .todo-list-container,
+      &:before,
+      &:after{
+        background: url(images/patterns/#{$i}.png);
+      }
+    }
+  }
+
+  &:before,
+  &:after{
+    content: "";
+    border: 1px solid rgba(0,0,0, 0.1);
+  }
+
+  &:before{
+    @include position(absolute, 6px 8px -10px 6px);
+  }
+  &:after{
+    @include position(absolute, 3px 4px -5px 3px);
+  }
+
+  .todo-list-container{
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(0,0,0, 0.2);
+    box-shadow: 0 0 30px 0px rgba(0,0,0, 0.4);
+
+    .new-todo-item-field{
+      width: 100%;
+      font-size: 36px;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid rgba(0,0,0, 0.2);
+      padding: 0.5em;
+    }
+
+    .todo-list-item{
+      border-bottom: 1px solid rgba(0,0,0, 0.1);
+
+      &:last-child{border: none;}
+
+      input[type="checkbox"]{
+	display: none;
+      }
+      label{
+	display: block;
+	padding: 20px 10px;
+	color: #333;
+	font-size: 20px;
+      }
+      [type=checkbox]:checked+label {
+        text-decoration: line-through;
+	color: #999;
+      }
+    }
+  }
+}
+
+//--
+
+.editable-label{
+  display: inline-block;
+  .editor-container{
+    display:none;
+
+    input{
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: 1px solid #bbf;
+      outline-offset: 2px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  &.editable{
+    .value-container{
+      display: none;
+    }
+    .editor-container{
+      display: inherit;
+    }
+  }
+}

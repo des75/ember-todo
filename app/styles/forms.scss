@@ -1,0 +1,155 @@
+// =========== FORMS =====================
+.form-field{
+  position: relative;
+}
+@mixin form-stretch{
+  display: block;
+  width: auto;
+}
+@mixin form-fixed($width: 600px){
+  display: block;
+  width: $width;
+}
+
+// labels
+@mixin label-new-line{
+  label{
+    clear: both;
+    display: block;
+  }
+}
+@mixin label-fixed-width($width: 200px){
+  label{
+    display: inline-block;
+    width: $width;
+  }
+}
+@mixin clean-label{
+  label{
+    display: inline-block;
+    width: auto;
+  }
+}
+@mixin label-text-align($align: left){
+  label{
+    text-align: $align;
+  }
+}
+
+// inputs
+@mixin clean-input-wrapper{
+  .input-wrapper{
+    position: relative;
+    left: auto;
+    right: auto;
+  }
+}
+@mixin input-new-line{
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  select, textarea,
+  .input-wrapper{
+    clear: both;
+    display: block;
+  }
+}
+@mixin input-height ($height) {
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  select, textarea{
+    height: $height;
+  }
+}
+@mixin input-stretch{
+  @include clean-input-wrapper;
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  select, textarea{
+    width: 100%;
+    @include box-sizing(border-box);
+  }
+  textarea{
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+@mixin input-fixed-width($width: 400px){
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  select, textarea{
+    width: $width;
+  }
+  textarea{
+    min-width: $width;
+    max-width: $width;
+  }
+}
+
+// inputs + labels combos
+@mixin input-stretch-right($label_width: 200px){
+  padding-left: $label_width;
+  @include label-fixed-width($label_width);
+  label{
+    position: absolute;
+    top:0;
+    left: 0;
+  }
+  .input-wrapper{
+    position: relative;
+    @include input-stretch;
+    label{
+      width: auto;
+      position: relative;
+      left: auto;
+      left: top;
+    }
+  }
+}
+
+.one-line-fields{
+  .one-line-field{
+    width: 50%;
+    margin: 0;
+    float: left;
+    position: relative;
+    padding-left: 10px;
+    &:first-child{
+      padding: 0;
+    }
+  }
+}
+
+
+.input-wrapper{
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  select, textarea{
+    border: 1px solid #cecece;
+  }
+  &.errors{
+    input[type=text],
+    input[type=email],
+    input[type=number],
+    input[type=tel],
+    input[type=password],
+    select, textarea{
+      border: 1px solid red;
+    }
+  }
+}
+// =======================================================

@@ -1,0 +1,40 @@
+<div class="side-panel" >
+  <h2>Settings</h2>
+
+  <h3>Background</h3>
+  <div class="bg-chooser">
+    {{#each listStyles as |style|}}
+      <button {{action "setStyle" style}} class="style style-{{style}} {{if (eq style model.style) "active"}}"></button>
+    {{/each}}
+  </div>
+
+</div>
+
+<div class="main-panel">
+  <h2>{{editable-label value=model.title}}</h2>
+
+  <div class="todo-list style-{{model.style}}">
+    <div class="todo-list-container">
+      <form {{action "createListItem" on="submit"}}>
+        {{input value=newListItemText class="new-todo-item-field"}}
+      </form>
+
+      <div class="entries">
+
+        {{#each model.entries as |item|}}
+          <div class="todo-list-item {{if item.completed "completed"}}">
+            <div class="form-row">
+              {{input type="checkbox" id=(concat "list" model.id "-item" item.id) checked=item.completed}}
+              <label for="list{{model.id}}-item{{item.id}}">{{item.text}}</label>
+            </div>
+          </div>
+        {{/each}}
+
+      </div>
+
+    </div>
+  </div>
+
+  {{outlet}}
+
+</div>

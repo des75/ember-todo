@@ -1,0 +1,11 @@
+{{#if editable }}
+  <span class="editor-container">
+    {{input type=type value=value  focus-out="stopEditing"}}
+  </span>
+{{else}}
+  <span class="value-container">
+    {{if (eq type "password") "******" value}}
+  </span>
+{{/if}}
+
+{{yield}}
