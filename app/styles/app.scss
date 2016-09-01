@@ -1,5 +1,6 @@
-@import "normalize";
+
 @import "forms";
+@import "bootstrap";
 @import "../../../node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
 
 
@@ -24,10 +25,14 @@ h3{
 }
 
 .main-panel{
-  @include position(absolute, 0 0 0 $side-panel-width);
+  @include position(absolute, 0 0 0 0);
   overflow: auto;
 }
 
+.width{
+  margin: 0 auto;
+  width: 600px;
+}
 
 //--
 
@@ -66,10 +71,41 @@ h3{
 
 //--
 
+.header-controls{
+  &.right{float: right;}
+  &.left{float: left;}
+
+  font-size: 24px;
+  padding: 10px;
+  margin-top: -10px;
+
+  color: inherit;
+  
+  background: rgba(230,230,230, 0.5);
+  border-radius: 3px;
+  border: 1px solid transparent;
+
+  &:hover{
+    @include transition(all 0.3s ease);
+    background: rgba(255,255,255, 1);
+  }
+  &:active,
+  &:focus,
+  &:hover{
+    border: 1px solid #aaa;
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+//--
+
 $list-preview-size: 180px;
 .all-todo-lists{
   .todo-list-preview{
     display: inline-block;
+    vertical-align: top;
+
     margin: 10px;
     border: 1px solid #ddd;
     padding: $list-preview-size*0.1;
@@ -102,7 +138,7 @@ $list-preview-size: 180px;
     font-size: 36px;
     height: 70px;
     width: 70px;
-    margin: ($list-preview-size - 70px)/2 + ($list-preview-size * 0.1);
+    margin: ($list-preview-size - 70px)/2;
     vertical-align: top;
 
     &:hover{
@@ -116,8 +152,6 @@ $list-preview-size: 180px;
 
 .todo-list{
   position: relative;
-  margin: 0 auto;
-  width: 600px;
 
   @for $i from 1 through 9 {
     &.style-#{$i}{
@@ -163,17 +197,33 @@ $list-preview-size: 180px;
       &:last-child{border: none;}
 
       input[type="checkbox"]{
-	display: none;
+        display: none;
       }
       label{
-	display: block;
-	padding: 20px 10px;
-	color: #333;
-	font-size: 20px;
+        display: block;
+        padding: 20px;
+        color: #333;
+        font-size: 20px;
+        font-weight: normal;
+	margin: 0;
       }
-      [type=checkbox]:checked+label {
-        text-decoration: line-through;
-	color: #999;
+
+
+      label:before {
+        @extend .glyphicon;
+        @extend .glyphicon-unchecked;
+        margin-right: 20px;
+        font-size: 1.4em;
+        vertical-align: text-bottom;
+      }
+      &.completed{
+        label{
+          text-decoration: line-through;
+	  color: #999;
+        }
+        label:before {
+          @extend .glyphicon-check;
+        }
       }
     }
   }
@@ -204,4 +254,34 @@ $list-preview-size: 180px;
       display: inherit;
     }
   }
+}
+
+
+
+//--
+
+@import "popover";
+
+$simple-bg-color: #fff;
+$simple-font-color: #3d3d3d;
+.popover-menu{
+  z-index: -1;
+  opacity: 0;
+  &.active{    
+    @include transition(all 0.3s ease);
+    opacity: 1;
+    z-index: 100;
+  }
+  
+  color: $simple-font-color;
+  background: $simple-bg-color;
+  border-radius: 5px;
+  padding: 18px;
+
+  box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+  border: 1px solid rgba(0,0,0, 0.2);
+  border-top: none;
+  
+  @include margins(0,0,0,0);
+  @include arrows ($simple-bg-color, false, 0px, 20px, 9px);
 }

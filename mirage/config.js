@@ -13,13 +13,8 @@ export default function() {
     };
   });
   
-  var last_list_id = 15;
   this.post("/todo-lists", (schema, request) => {
     var params = JSON.parse(request.requestBody);
-
-    last_list_id += 1;
-    
-    params.data.id = last_list_id;
     return params;
   });  
   this.patch("/todo-lists/:id", (schema, request) => {
@@ -34,13 +29,8 @@ export default function() {
     };
   });
   
-  var last_item_id = 15;
   this.post("/todo-list-items", (schema, request) => {
     var params = JSON.parse(request.requestBody);
-
-    last_item_id += 1;
-    
-    params.data.id = last_item_id;
     return params;
   });
   
