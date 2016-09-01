@@ -7,5 +7,8 @@ export default DS.Model.extend({
   style: attr(),
   priority: attr(),
   
-  entries: hasMany("todo-list-item")
+  entries: hasMany("todo-list-item"),
+  slug: Ember.computed("title", function() {
+    return Ember.String.dasherize(this.get('title'));
+  })
 });

@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('todo-lists', function() {
     this.route('todo-list', {path: ":id"});
+    this.route('todo-list', {path: ":id/:slug"});
   });
 });
 
