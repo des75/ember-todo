@@ -3,8 +3,8 @@
     <h2>
       {{#link-to "todo-lists" class="header-controls left  glyphicon glyphicon-circle-arrow-left" bubbles=false}}{{/link-to}}
       <button {{action "showConfigPopover"}}
-	  id="todo-list-settings" class="header-controls right  glyphicon glyphicon-cog"></button>
-      
+id="todo-list-settings" class="header-controls right  glyphicon glyphicon-cog"></button>
+
       {{editable-label value=model.title editable=editableTitle placeholder="Title"}}
     </h2>
 
@@ -36,15 +36,22 @@
 
 
 
-
-{{#popover-menu rel="#todo-list-settings" active=isConfigPopoverActive position="south" orientation="left"}}
-  <h3>Background</h3>
-  <div class="bg-chooser">
-    {{#each-in listStyles as |ind style|}}
-      {{#if (not (mod ind 3))}}
-	<br>
-      {{/if}}
-      <button {{action "setStyle" style}} class="style style-{{style}} {{if (eq style model.style) "active"}}"></button>
-    {{/each-in}}
-  </div>
-{{/popover-menu}}
+{{#if isConfigPopoverActive }}
+  {{#tether-dialog
+     close="showConfigPopover"
+     hasOverlay=false
+     clickOutsideToClose=true
+     targetAttachment='bottom right'
+     attachment='top right'
+     target='#todo-list-settings' }}
+    <h3>Background</h3>
+    <div class="bg-chooser">
+      {{#each-in listStyles as |ind style|}}
+        {{#if (not (mod ind 3))}}
+          <br>
+        {{/if}}
+        <button {{action "setStyle" style}} class="style style-{{style}} {{if (eq style model.style) "active"}}"></button>
+      {{/each-in}}
+    </div>
+  {{/tether-dialog}}
+{{/if}}
