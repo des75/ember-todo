@@ -21,12 +21,15 @@ export default Ember.Controller.extend({
 
       this.set("newListItemText", "");
     },
+    
     showConfigPopover(){
+      var self = this;
       this.toggleProperty("isConfigPopoverActive");
     },
+    
     setStyle(style){
       this.model.set("style", style);
-      this.toggleProperty("isConfigPopoverActive");
+      this.set("isConfigPopoverActive", false);
     }
   }
 });
