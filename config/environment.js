@@ -19,6 +19,17 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:token',
+    routeAfterAuthentication: 'todo-lists',
+    routeIfAlreadyAuthenticated: 'todo-lists'
+  };
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `/auth`,
+    identificationField: 'email'
+  };
+  
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

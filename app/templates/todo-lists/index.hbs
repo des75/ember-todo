@@ -22,7 +22,15 @@
 </div>
 
 
-{{#popover-menu rel="#todo-lists-filters" active=isFiltersPopoverActive position="south" orientation="left"}}
-  <h3>Filters</h3>
-  Coming soon
-{{/popover-menu}}
+{{#if isFiltersPopoverActive }}
+  {{#tether-dialog
+     close="showFiltersPopover"
+     hasOverlay=false
+     clickOutsideToClose=true
+     targetAttachment='bottom right'
+     attachment='top right'
+     target='#todo-lists-filters' }}
+    <h3>Filters</h3>
+    Coming soon
+  {{/tether-dialog}}
+{{/if}}

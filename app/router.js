@@ -10,6 +10,7 @@ Router.map(function() {
     this.route('todo-list', {path: ":id"});
     this.route('todo-list', {path: ":id/:slug"});
   });
+  this.route('login', {path: "/"});
 });
 
 export default Router;

@@ -33,6 +33,15 @@ export default function() {
     var params = JSON.parse(request.requestBody);
     return params;
   });
+
+
+
+  
+  this.post("/auth", (schema, request) => {    
+    return {
+      token: "qweqweqwe"
+    };
+  });
   
   // These comments are here to help you get started. Feel free to delete them.
 

@@ -291,3 +291,24 @@ $simple-font-color: #3d3d3d;
 
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+
+
+
+
+//--
+
+.login{
+  text-align: center;
+
+  h1{
+    margin: 1em;
+  }
+  
+  input{
+    border-radius: 3px;
+
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #999;
+  }
+}
