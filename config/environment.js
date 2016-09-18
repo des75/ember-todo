@@ -6,6 +6,8 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+
+    apiURL: 'http://localhost:4000',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -19,24 +21,28 @@ module.exports = function(environment) {
     }
   };
 
+  if (environment === 'production'){
+    
+  }
+  if (environment === 'development') {
+    
+  }
+
+  ENV['ember-cli-mirage'] = {
+    enabled: false
+  };
+
   ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:token',
     routeAfterAuthentication: 'todo-lists',
     routeIfAlreadyAuthenticated: 'todo-lists'
   };
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `/auth`,
+    serverTokenEndpoint: `${ENV.apiURL}/auth`,
     identificationField: 'email'
   };
-  
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }
+
 
   if (environment === 'test') {
     // Testem prefers this...

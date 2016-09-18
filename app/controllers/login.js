@@ -13,6 +13,14 @@ export default Ember.Controller.extend({
       }, (err) => {
         this.set("authentificationError", "Your username or password is wrong, please try again");
       });
+    },
+
+    register: function(){
+      this.store.createRecord("client", {
+        name: "Any Name",
+        email: this.get("identification"),
+        password: this.get("password")
+      }).save();
     }
   }
 });
